@@ -23,6 +23,10 @@ $completion = new completion_info($course);
 if ($completion->is_enabled($cm)) {
     $completion->set_module_viewed($cm);
 }
+\mod_videotrackerpro\event\course_module_viewed::create([
+    'objectid' => (int)$activity->id,
+    'context' => $context,
+])->trigger();
 
 $bridge = source_manager::create();
 $level = !empty($activity->recordsessions) ? analytics::LEVEL_DETAILED : analytics::LEVEL_BASIC;
