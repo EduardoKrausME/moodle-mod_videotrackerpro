@@ -24,8 +24,6 @@
 
 use mod_videotrackerpro\source_manager;
 
-defined('MOODLE_INTERNAL') || die;
-
 function videotrackerpro_supports($feature) {
     return match ($feature) {
         FEATURE_MOD_ARCHETYPE => MOD_ARCHETYPE_OTHER,

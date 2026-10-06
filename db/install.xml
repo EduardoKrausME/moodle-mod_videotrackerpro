@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <XMLDB PATH="mod/videotrackerpro/db" VERSION="20261006" COMMENT="XMLDB file for Video Tracker Pro."
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
  <TABLES>
   <TABLE NAME="videotrackerpro" COMMENT="Video Tracker Pro activities.">
    <FIELDS>
