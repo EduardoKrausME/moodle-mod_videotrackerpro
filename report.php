@@ -66,22 +66,38 @@ if ($userid) {
         get_string('session', 'videotrackerpro'),
         get_string('started', 'videotrackerpro'),
         get_string('ended', 'videotrackerpro'),
+        get_string('sessionduration', 'videotrackerpro'),
         get_string('watchtime', 'videotrackerpro'),
+        get_string('pausedtime', 'videotrackerpro'),
+        get_string('positions', 'videotrackerpro'),
+        get_string('sessionprogress', 'videotrackerpro'),
         get_string('pauses', 'videotrackerpro'),
         get_string('seeks', 'videotrackerpro'),
+        get_string('ratechanges', 'videotrackerpro'),
         get_string('speedavg', 'videotrackerpro'),
-        get_string('dropoff', 'videotrackerpro'),
+        get_string('reachedend', 'videotrackerpro'),
+        get_string('endreason', 'videotrackerpro'),
     ];
     foreach ($data['sessions'] as $session) {
         $table->data[] = [
             s($session->sessionid),
             userdate((int)$session->startedat),
             (int)$session->endedat > 0 ? userdate((int)$session->endedat) : get_string('open', 'videotrackerpro'),
+            format_time((int)($session->sessionduration ?? 0)),
             format_time((int)$session->watchtime),
+            format_time((int)($session->pausedtime ?? 0)),
+            format_time((int)($session->startposition ?? 0)) . ' → '
+                . format_time((int)($session->endposition ?? $session->dropoff)),
+            (int)($session->percentstart ?? 0) . '% → ' . (int)($session->percentend ?? 0) . '%',
             (int)$session->pauses,
             (int)$session->seeks,
+            (int)($session->ratechanges ?? 0),
             format_float((float)$session->speedavg, 2) . 'x',
-            format_time((int)$session->dropoff),
+            !empty($session->receivedended) ? get_string('yes') : get_string('no'),
+            get_string(
+                'endreason:' . clean_param((string)($session->endreason ?? 'active_or_unclosed'), PARAM_ALPHANUMEXT),
+                'videotrackerpro'
+            ),
         ];
     }
     echo html_writer::table($table);
