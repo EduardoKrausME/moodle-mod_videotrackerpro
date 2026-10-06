@@ -71,3 +71,16 @@ $string['videotrackerpro:viewreport'] = 'Visualizar analytics de reprodução do
 $string['videotrackerproname'] = 'Nome';
 $string['viewreport'] = 'Ver relatório de analytics';
 $string['watchtime'] = 'Tempo ativo de reprodução';
+
+$string['errortrackingrequired'] = 'A fonte selecionada no Video Bridge não fornece tracking confiável.';
+$string['sessionduration'] = 'Duração da sessão';
+$string['pausedtime'] = 'Tempo pausado';
+$string['positions'] = 'Posição inicial → final';
+$string['sessionprogress'] = 'Progresso no início → fim da sessão';
+$string['ratechanges'] = 'Mudanças de velocidade';
+$string['reachedend'] = 'Evento ended recebido';
+$string['endreason'] = 'Motivo do encerramento da sessão';
+$string['endreason:ended'] = 'O vídeo terminou normalmente';
+$string['endreason:page_closed_or_navigated'] = 'A página foi fechada ou houve navegação antes do fim do vídeo';
+$string['endreason:closed_before_end'] = 'A sessão foi encerrada antes do fim do vídeo';
+$string['endreason:active_or_unclosed'] = 'Sessão ainda ativa ou sem sinal de encerramento';
