@@ -2,6 +2,16 @@
     <div class="card-body">
         <h4>{{#str}}sessiontimeline, videotrackerpro{{/str}} <small class="text-muted">{{sessionid}}</small></h4>
         <div class="small text-muted mb-2">{{started}}</div>
-        <pre class="mb-0 text-wrap">{{events}}</pre>
+        <div class="videotrackerpro-timeline">
+            {{#items}}
+                <div class="d-flex gap-3 py-1 border-bottom">
+                    <code>{{time}}</code>
+                    <span>{{label}}</span>
+                </div>
+            {{/items}}
+            {{^items}}
+                <div class="text-muted">{{#str}}noevents, videotrackerpro{{/str}}</div>
+            {{/items}}
+        </div>
     </div>
 </div>
