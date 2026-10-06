@@ -39,6 +39,7 @@ function videotrackerpro_supports($feature) {
 function videotrackerpro_add_instance(stdClass $data, ?mod_videotrackerpro_mod_form $mform = null): int {
     global $DB;
     $data->timecreated = $data->timemodified = time();
+    source_manager::require_tracking((string)$data->videosource);
     source_manager::create()->normalise_record($data);
     $id = $DB->insert_record('videotrackerpro', $data);
     $data->id = $id;
@@ -51,6 +52,7 @@ function videotrackerpro_update_instance(stdClass $data, ?mod_videotrackerpro_mo
     $old = $DB->get_record('videotrackerpro', ['id' => $data->instance], '*', MUST_EXIST);
     $data->id = $data->instance;
     $data->timemodified = time();
+    source_manager::require_tracking((string)$data->videosource);
     source_manager::create()->normalise_record($data);
     $ok = $DB->update_record('videotrackerpro', $data);
     source_manager::create()->save_files($data, context_module::instance((int)$data->coursemodule), (string)$old->videosource);
