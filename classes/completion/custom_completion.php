@@ -78,7 +78,8 @@ class custom_completion extends activity_custom_completion {
     public function get_custom_rule_descriptions(): array {
         global $DB;
         $activity = $DB->get_record('videotrackerpro', ['id' => $this->cm->instance], 'completionpercent', MUST_EXIST);
-        return ['completionpercent' => get_string('completionpercent', 'videotrackerpro') . ': ' . (int)$activity->completionpercent . '%'];
+        return ['completionpercent' => get_string('completionpercent', 'videotrackerpro') .
+            ': ' . (int)$activity->completionpercent . '%'];
     }
 
     /**

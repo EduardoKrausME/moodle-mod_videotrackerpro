@@ -24,6 +24,12 @@
 
 use mod_videotrackerpro\source_manager;
 
+/**
+ * videotrackerpro_supports
+ *
+ * @param $feature
+ * @return int|string|true|null
+ */
 function videotrackerpro_supports($feature) {
     return match ($feature) {
         FEATURE_MOD_ARCHETYPE => MOD_ARCHETYPE_OTHER,
@@ -34,6 +40,16 @@ function videotrackerpro_supports($feature) {
     };
 }
 
+/**
+ * videotrackerpro_add_instance
+ *
+ * @param stdClass $data
+ * @param mod_videotrackerpro_mod_form|null $mform
+ * @return int
+ * @throws JsonException
+ * @throws dml_exception
+ * @throws moodle_exception
+ */
 function videotrackerpro_add_instance(stdClass $data, ?mod_videotrackerpro_mod_form $mform = null): int {
     global $DB;
     $data->timecreated = $data->timemodified = time();
@@ -45,6 +61,16 @@ function videotrackerpro_add_instance(stdClass $data, ?mod_videotrackerpro_mod_f
     return $id;
 }
 
+/**
+ * videotrackerpro_update_instance
+ *
+ * @param stdClass $data
+ * @param mod_videotrackerpro_mod_form|null $mform
+ * @return bool
+ * @throws JsonException
+ * @throws dml_exception
+ * @throws moodle_exception
+ */
 function videotrackerpro_update_instance(stdClass $data, ?mod_videotrackerpro_mod_form $mform = null): bool {
     global $DB;
     $old = $DB->get_record('videotrackerpro', ['id' => $data->instance], '*', MUST_EXIST);
@@ -57,6 +83,14 @@ function videotrackerpro_update_instance(stdClass $data, ?mod_videotrackerpro_mo
     return $ok;
 }
 
+/**
+ * videotrackerpro_delete_instance
+ *
+ * @param int $id
+ * @return bool
+ * @throws coding_exception
+ * @throws dml_exception
+ */
 function videotrackerpro_delete_instance(int $id): bool {
     global $DB;
     $activity = $DB->get_record('videotrackerpro', ['id' => $id]);
@@ -73,6 +107,16 @@ function videotrackerpro_delete_instance(int $id): bool {
     return true;
 }
 
+/**
+ * videotrackerpro_get_completion_state
+ *
+ * @param $course
+ * @param $cm
+ * @param int $userid
+ * @param bool $type
+ * @return bool
+ * @throws dml_exception
+ */
 function videotrackerpro_get_completion_state($course, $cm, int $userid, bool $type): bool {
     global $DB;
     $activity = $DB->get_record('videotrackerpro', ['id' => $cm->instance], '*', MUST_EXIST);

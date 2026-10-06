@@ -35,7 +35,9 @@ class backup_videotrackerpro_activity_task extends backup_activity_task {
      *
      * @return mixed Return value.
      */
-    protected function define_my_settings() {}
+    protected function define_my_settings() {
+    }
+
     /**
      * Method define_my_steps.
      *
@@ -47,6 +49,7 @@ class backup_videotrackerpro_activity_task extends backup_activity_task {
             'videotrackerpro.xml'
         ));
     }
+
     /**
      * Method encode_content_links.
      *

@@ -55,7 +55,7 @@ class mod_videotrackerpro_mod_form extends moodleform_mod {
         $bridge->add_form_elements($mform, 'videosource');
 
         $mform->addElement('header', 'analyticsheader', get_string('analyticsheader', 'videotrackerpro'));
-        foreach (['recordsessions','recordseeks','recordpauses','recordrates','recordbuffering','recorddropoff','showpersonal'] as $field) {
+        foreach (['recordsessions', 'recordseeks', 'recordpauses', 'recordrates', 'recordbuffering', 'recorddropoff', 'showpersonal'] as $field) {
             $mform->addElement('advcheckbox', $field, get_string($field, 'videotrackerpro'));
             $mform->setDefault($field, 1);
         }
