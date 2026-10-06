@@ -31,6 +31,16 @@ if ($completion->is_enabled($cm)) {
 $bridge = source_manager::create();
 $level = !empty($activity->recordsessions) ? analytics::LEVEL_DETAILED : analytics::LEVEL_BASIC;
 $player = $bridge->get_player_config($activity, $context, $level);
+if (!empty($player['progress'])) {
+    $player['progress']['telemetryenabled'] = !empty($activity->recordsessions);
+    $player['progress']['telemetryoptions'] = [
+        'recordseeks' => !empty($activity->recordseeks),
+        'recordpauses' => !empty($activity->recordpauses),
+        'recordrates' => !empty($activity->recordrates),
+        'recordbuffering' => !empty($activity->recordbuffering),
+        'recorddropoff' => !empty($activity->recorddropoff),
+    ];
+}
 $rootid = 'videotrackerpro-player-' . $cm->id;
 $sourcehtml = $OUTPUT->render_from_template($player['sourcetemplate'], $player);
 $PAGE->requires->js_call_amd('mod_videotrackerpro/player', 'init', [$rootid, $player]);
