@@ -51,6 +51,7 @@ if ($completion->is_enabled($cm)) {
     'context' => $context,
 ])->trigger();
 
+source_manager::require_tracking((string)$activity->videosource);
 $bridge = source_manager::create();
 $level = !empty($activity->recordsessions) ? analytics::LEVEL_DETAILED : analytics::LEVEL_BASIC;
 $player = $bridge->get_player_config($activity, $context, $level);
