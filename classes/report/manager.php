@@ -11,7 +11,24 @@ final class manager {
     }
 
     public static function users(context_module $context, \stdClass $activity): array {
-        $users = get_enrolled_users($context, 'mod/videotrackerpro:view', 0, 'u.id,u.firstname,u.lastname,u.email', 'u.lastname,u.firstname');
+        $cm = get_coursemodule_from_id(null, $context->instanceid, 0, false, MUST_EXIST);
+        $groupid = 0;
+        $groupmode = groups_get_activity_groupmode($cm);
+        if ($groupmode) {
+            $groupid = groups_get_activity_group($cm, true);
+            if ($groupmode == SEPARATEGROUPS
+                    && !has_capability('moodle/site:accessallgroups', $context)
+                    && !$groupid) {
+                return [];
+            }
+        }
+        $users = get_enrolled_users(
+            $context,
+            'mod/videotrackerpro:view',
+            $groupid,
+            'u.id,u.firstname,u.lastname,u.email',
+            'u.lastname,u.firstname'
+        );
         if (!$users) {
             return [];
         }
