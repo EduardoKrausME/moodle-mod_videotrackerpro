@@ -77,7 +77,12 @@ final class manager {
             $context->id, 'mod_videotrackerpro', (int)$activity->id, $hash, array_keys($users)
         );
         $sessions = analytics::get_session_metrics(
-            $context->id, 'mod_videotrackerpro', (int)$activity->id, $hash
+            $context->id,
+            'mod_videotrackerpro',
+            (int)$activity->id,
+            $hash,
+            null,
+            ['userids' => array_keys($users)]
         );
 
         $progressbyuser = [];
