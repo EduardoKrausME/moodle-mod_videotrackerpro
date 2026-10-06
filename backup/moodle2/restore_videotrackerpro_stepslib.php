@@ -29,8 +29,13 @@ class restore_videotrackerpro_activity_structure_step extends restore_activity_s
      * @return mixed Return value.
      */
     protected function define_structure() {
-        return [new restore_path_element('videotrackerpro', '/activity/videotrackerpro')];
+        $paths = [
+            new restore_path_element('videotrackerpro', '/activity/videotrackerpro'),
+        ];
+
+        return $this->prepare_activity_structure($paths);
     }
+
     /**
      * Method process_videotrackerpro.
      *
@@ -46,6 +51,7 @@ class restore_videotrackerpro_activity_structure_step extends restore_activity_s
         $newid = $DB->insert_record('videotrackerpro', $data);
         $this->apply_activity_instance($newid);
     }
+
     /**
      * Method after_execute.
      *
