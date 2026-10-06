@@ -26,6 +26,9 @@ defined('MOODLE_INTERNAL') || die;
 
 require_once($CFG->dirroot . '/mod/videotrackerpro/backup/moodle2/backup_videotrackerpro_stepslib.php');
 
+/**
+ * Class backup_videotrackerpro_activity_task.
+ */
 class backup_videotrackerpro_activity_task extends backup_activity_task {
     /**
      * Method define_my_settings.
