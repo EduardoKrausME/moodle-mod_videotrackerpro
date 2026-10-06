@@ -20,11 +20,19 @@ $PAGE->set_heading(format_string($activity->name));
 
 echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('report', 'videotrackerpro'));
+groups_print_activity_menu($cm, $PAGE->url);
 
 if ($userid) {
     $user = $DB->get_record('user', ['id' => $userid], '*', MUST_EXIST);
     if (!is_enrolled($context, $user, 'mod/videotrackerpro:view', true)) {
         throw new moodle_exception('nopermissions', 'error');
+    }
+    if (groups_get_activity_groupmode($cm) == SEPARATEGROUPS
+            && !has_capability('moodle/site:accessallgroups', $context)) {
+        $groupid = groups_get_activity_group($cm, true);
+        if (!$groupid || !groups_is_member($groupid, $userid)) {
+            throw new moodle_exception('nopermissions', 'error');
+        }
     }
 
     $data = manager::user($context, $activity, $userid);
