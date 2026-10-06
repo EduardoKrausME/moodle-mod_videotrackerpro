@@ -22,6 +22,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
+require_once($CFG->dirroot . '/mod/videotrackerpro/backup/moodle2/backup_videotrackerpro_stepslib.php');
+
 class backup_videotrackerpro_activity_task extends backup_activity_task {
     /**
      * Method define_my_settings.
