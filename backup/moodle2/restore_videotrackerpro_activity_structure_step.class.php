@@ -53,5 +53,6 @@ class restore_videotrackerpro_activity_structure_step extends restore_activity_s
      */
     protected function after_execute() {
         $this->add_related_files('mod_videotrackerpro', 'intro', null);
+        $this->add_related_files('local_video_bridge', 'video', 0);
     }
 }
