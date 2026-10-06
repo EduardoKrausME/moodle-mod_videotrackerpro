@@ -37,6 +37,7 @@ class backup_videotrackerpro_activity_structure_step extends backup_activity_str
         ]);
         $root->set_source_table('videotrackerpro', ['id' => backup::VAR_ACTIVITYID]);
         $root->annotate_files('mod_videotrackerpro', 'intro', null);
+        $root->annotate_files('local_video_bridge', 'video', 0);
         return $this->prepare_activity_structure($root);
     }
 }
