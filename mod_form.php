@@ -109,7 +109,7 @@ class mod_videotrackerpro_mod_form extends moodleform_mod {
      */
     public function validation($data, $files): array {
         $errors = parent::validation($data, $files);
-        $errors += source_manager::create()->validation($data, $files);
+        $errors += source_manager::validation($data, $files);
         $percent = (int)($data['completionpercent'] ?? 0);
         if ($percent < 0 || $percent > 100) {
             $errors['completionpercent'] = get_string('errorpercent', 'videotrackerpro');
