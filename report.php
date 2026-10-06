@@ -64,17 +64,42 @@ if ($userid) {
     echo html_writer::table($table);
 
     foreach ($data['sessions'] as $session) {
+        $events = json_decode((string)($session->events ?? ''), true) ?: [];
+        $items = [];
+        foreach ($events as $event) {
+            if (!is_array($event)) {
+                continue;
+            }
+            $type = (string)($event['type'] ?? '');
+            $position = (float)($event['position'] ?? 0);
+            $label = $type;
+            if ($type === 'seek') {
+                $label = get_string('eventseek', 'videotrackerpro', (object)[
+                    'from' => format_time((int)($event['from'] ?? 0)),
+                    'to' => format_time((int)($event['to'] ?? 0)),
+                    'direction' => (string)($event['direction'] ?? ''),
+                ]);
+            } else if ($type === 'playbackrate') {
+                $label = get_string('eventrate', 'videotrackerpro', (object)[
+                    'from' => format_float((float)($event['from'] ?? 1), 2),
+                    'to' => format_float((float)($event['to'] ?? 1), 2),
+                ]);
+            } else if ($type !== '') {
+                $stringid = 'event' . $type;
+                $label = get_string_manager()->string_exists($stringid, 'videotrackerpro')
+                    ? get_string($stringid, 'videotrackerpro')
+                    : $type;
+            }
+            $items[] = [
+                'time' => format_time((int)$position),
+                'label' => $label,
+            ];
+        }
+
         echo $OUTPUT->render_from_template('mod_videotrackerpro/timeline', [
             'sessionid' => s($session->sessionid),
             'started' => userdate((int)$session->startedat),
-            'events' => json_encode([
-                'pausepoints' => json_decode((string)$session->pausepoints, true) ?: [],
-                'forward_seeks' => json_decode((string)$session->skippoints, true) ?: [],
-                'backward_seeks' => json_decode((string)$session->replaypoints, true) ?: [],
-                'rates' => json_decode((string)$session->rates, true) ?: [],
-                'dropoff' => (int)$session->dropoff,
-                'ended' => (bool)$session->endedat,
-            ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+            'items' => $items,
         ]);
     }
 } else {
