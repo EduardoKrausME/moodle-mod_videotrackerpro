@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/videotrackerpro/db" VERSION="20261006" COMMENT="XMLDB file for Video Tracker Pro."
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+ <TABLES>
+  <TABLE NAME="videotrackerpro" COMMENT="Video Tracker Pro activities.">
+   <FIELDS>
+    <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+    <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+    <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+    <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+    <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+    <FIELD NAME="videosource" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+    <FIELD NAME="sourceconfig" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+    <FIELD NAME="videourl" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+    <FIELD NAME="completionpercent" TYPE="int" LENGTH="3" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+    <FIELD NAME="recordsessions" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+    <FIELD NAME="recordseeks" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+    <FIELD NAME="recordpauses" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+    <FIELD NAME="recordrates" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+    <FIELD NAME="recordbuffering" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+    <FIELD NAME="recorddropoff" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+    <FIELD NAME="showpersonal" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+    <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+    <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+   </FIELDS>
+   <KEYS>
+    <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+    <KEY NAME="course_fk" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
+   </KEYS>
+   <INDEXES><INDEX NAME="course" UNIQUE="false" FIELDS="course"/></INDEXES>
+  </TABLE>
+ </TABLES>
+</XMLDB>
