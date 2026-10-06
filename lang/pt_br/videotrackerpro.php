@@ -35,3 +35,15 @@ $string['privacy:metadata:bridge'] = 'O Video Bridge armazena progresso normaliz
 $string['videotrackerpro:addinstance'] = 'Adicionar atividade Video Tracker Pro';
 $string['videotrackerpro:view'] = 'Visualizar Video Tracker Pro';
 $string['videotrackerpro:viewreport'] = 'Visualizar analytics de reprodução dos alunos';
+
+$string['noevents'] = 'Nenhum evento ordenado foi registrado nesta sessão.';
+$string['eventsessionstart'] = 'início da sessão';
+$string['eventplay'] = 'play';
+$string['eventpause'] = 'pause';
+$string['eventseek'] = 'seek {$a->from} → {$a->to} ({$a->direction})';
+$string['eventrate'] = 'velocidade {$a->from}x → {$a->to}x';
+$string['eventwaiting'] = 'buffering';
+$string['eventplaying'] = 'reprodução retomada';
+$string['eventended'] = 'fim do vídeo';
+$string['eventvisibilitychange'] = 'visibilidade alterada';
+$string['eventsessionend'] = 'fim da sessão';
