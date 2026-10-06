@@ -48,6 +48,7 @@ $string['eventwaiting'] = 'buffering';
 $string['lastpoint'] = 'Last point';
 $string['lastview'] = 'Last view';
 $string['modulename'] = 'Video Tracker Pro';
+$string['modulenameplural'] = 'Video Tracker Pro';
 $string['myanalytics'] = 'My analytics';
 $string['noevents'] = 'No ordered events recorded for this session.';
 $string['open'] = 'Open';
