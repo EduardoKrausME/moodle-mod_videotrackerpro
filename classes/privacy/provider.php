@@ -1,4 +1,27 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * provider.php
+ *
+ * @package   mod_videotrackerpro
+ * @copyright 2026 Eduardo Kraus {@link https://eduardokraus.com}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace mod_videotrackerpro\privacy;
 
 use core_privacy\local\metadata\collection;
@@ -14,11 +37,23 @@ class provider implements
         \core_privacy\local\request\core_userlist_provider,
         \core_privacy\local\request\plugin\provider {
 
+    /**
+     * Method get_metadata.
+     *
+     * @param collection $collection Parameter collection.
+     * @return collection Return value.
+     */
     public static function get_metadata(collection $collection): collection {
         $collection->add_subsystem_link('local_video_bridge', [], 'privacy:metadata:bridge');
         return $collection;
     }
 
+    /**
+     * Method get_contexts_for_userid.
+     *
+     * @param int $userid Parameter userid.
+     * @return \core_privacy\local\request\contextlist Return value.
+     */
     public static function get_contexts_for_userid(int $userid): \core_privacy\local\request\contextlist {
         $list = new \core_privacy\local\request\contextlist();
         $sql = "SELECT DISTINCT c.id
@@ -39,10 +74,22 @@ class provider implements
         return $list;
     }
 
+    /**
+     * Method export_user_data.
+     *
+     * @param \core_privacy\local\request\approved_contextlist $contextlist Parameter contextlist.
+     * @return void Return value.
+     */
     public static function export_user_data(\core_privacy\local\request\approved_contextlist $contextlist): void {
         // local_video_bridge owns and exports playback rows for these contexts.
     }
 
+    /**
+     * Method delete_data_for_all_users_in_context.
+     *
+     * @param \context $context Parameter context.
+     * @return void Return value.
+     */
     public static function delete_data_for_all_users_in_context(\context $context): void {
         if (!$context instanceof \context_module) {
             return;
@@ -57,6 +104,12 @@ class provider implements
         }
     }
 
+    /**
+     * Method delete_data_for_user.
+     *
+     * @param \core_privacy\local\request\approved_contextlist $contextlist Parameter contextlist.
+     * @return void Return value.
+     */
     public static function delete_data_for_user(\core_privacy\local\request\approved_contextlist $contextlist): void {
         global $DB;
         $userid = (int)$contextlist->get_user()->id;
@@ -76,6 +129,12 @@ class provider implements
         }
     }
 
+    /**
+     * Method get_users_in_context.
+     *
+     * @param \core_privacy\local\request\userlist $userlist Parameter userlist.
+     * @return void Return value.
+     */
     public static function get_users_in_context(\core_privacy\local\request\userlist $userlist): void {
         $context = $userlist->get_context();
         if (!$context instanceof \context_module) {
@@ -91,6 +150,12 @@ class provider implements
         ]);
     }
 
+    /**
+     * Method delete_data_for_users.
+     *
+     * @param \core_privacy\local\request\approved_userlist $userlist Parameter userlist.
+     * @return void Return value.
+     */
     public static function delete_data_for_users(\core_privacy\local\request\approved_userlist $userlist): void {
         global $DB;
         $context = $userlist->get_context();
