@@ -36,4 +36,41 @@ final class source_manager {
     public static function create(): \local_video_bridge\source\manager {
         return new \local_video_bridge\source\manager('videosource', 'sourceconfig', 'videourl');
     }
+
+    /**
+     * Validates selected source fields and enforces tracking capability.
+     *
+     * @param array $data Form data.
+     * @param array $files Submitted files.
+     * @return array Validation errors.
+     */
+    public static function validation(array $data, array $files): array {
+        $manager = self::create();
+        $errors = $manager->validation($data, $files);
+        $source = clean_param((string)($data['videosource'] ?? ''), PARAM_PLUGIN);
+        if ($source !== '') {
+            try {
+                if (!$manager->get_plugin($source)->supports('tracking')) {
+                    $errors['videosource'] = get_string('errortrackingrequired', 'videotrackerpro');
+                }
+            } catch (\moodle_exception $exception) {
+                $errors['videosource'] = $exception->getMessage();
+            }
+        }
+        return $errors;
+    }
+
+    /**
+     * Rejects a source which does not provide reliable tracking.
+     *
+     * @param string $source Source short name.
+     * @return void
+     */
+    public static function require_tracking(string $source): void {
+        $source = clean_param($source, PARAM_PLUGIN);
+        $manager = self::create();
+        if (!$manager->get_plugin($source)->supports('tracking')) {
+            throw new \moodle_exception('errortrackingrequired', 'videotrackerpro');
+        }
+    }
 }
