@@ -84,3 +84,5 @@ $string['endreason:ended'] = 'O vídeo terminou normalmente';
 $string['endreason:page_closed_or_navigated'] = 'A página foi fechada ou houve navegação antes do fim do vídeo';
 $string['endreason:closed_before_end'] = 'A sessão foi encerrada antes do fim do vídeo';
 $string['endreason:active_or_unclosed'] = 'Sessão ainda ativa ou sem sinal de encerramento';
+
+$string['pluginadministration'] = 'Administração do Video Tracker Pro';
