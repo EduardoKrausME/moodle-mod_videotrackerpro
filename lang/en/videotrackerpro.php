@@ -35,3 +35,15 @@ $string['privacy:metadata:bridge'] = 'Video Bridge stores normalized progress an
 $string['videotrackerpro:addinstance'] = 'Add a Video Tracker Pro activity';
 $string['videotrackerpro:view'] = 'View Video Tracker Pro';
 $string['videotrackerpro:viewreport'] = 'View learner playback analytics';
+
+$string['noevents'] = 'No ordered events recorded for this session.';
+$string['eventsessionstart'] = 'session start';
+$string['eventplay'] = 'play';
+$string['eventpause'] = 'pause';
+$string['eventseek'] = 'seek {$a->from} → {$a->to} ({$a->direction})';
+$string['eventrate'] = 'rate {$a->from}x → {$a->to}x';
+$string['eventwaiting'] = 'buffering';
+$string['eventplaying'] = 'playing';
+$string['eventended'] = 'ended';
+$string['eventvisibilitychange'] = 'visibility changed';
+$string['eventsessionend'] = 'session end';
