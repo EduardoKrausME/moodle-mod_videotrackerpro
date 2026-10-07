@@ -18,6 +18,6 @@ Feature: Configure Video Tracker Pro
   Scenario: Teacher can open the add activity form
     Given I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    When I add a "Video Tracker Pro" activity to course "Course 1" section "1"
+    When I add a "videotrackerpro" activity to course "Course 1" section "1"
     Then I should see "Video source"
     And I should see "Analytics"
