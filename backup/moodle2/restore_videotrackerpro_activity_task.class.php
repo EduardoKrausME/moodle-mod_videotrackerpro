@@ -35,7 +35,8 @@ class restore_videotrackerpro_activity_task extends restore_activity_task {
      *
      * @return mixed Return value.
      */
-    protected function define_my_settings() {}
+    protected function define_my_settings() {
+    }
     /**
      * Method define_my_steps.
      *
