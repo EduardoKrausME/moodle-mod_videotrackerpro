@@ -124,7 +124,16 @@ function videotrackerpro_get_completion_state($course, $cm, int $userid, bool $t
         return $type;
     }
     $context = context_module::instance($cm->id);
-    $hash = \local_video_bridge\progress\manager::media_hash((string)$activity->videosource, (string)$activity->sourceconfig);
-    $progress = \local_video_bridge\progress\manager::get_progress($context->id, 'mod_videotrackerpro', (int)$activity->id, $hash, $userid);
+    $hash = \local_video_bridge\progress\manager::media_hash(
+        (string)$activity->videosource,
+        (string)$activity->sourceconfig
+    );
+    $progress = \local_video_bridge\progress\manager::get_progress(
+        $context->id,
+        'mod_videotrackerpro',
+        (int)$activity->id,
+        $hash,
+        $userid
+    );
     return $progress && (int)$progress->percent >= (int)$activity->completionpercent;
 }
