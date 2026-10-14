@@ -31,6 +31,7 @@ final class report_manager_test extends \advanced_testcase {
     /**
      * Method test_mediahash_is_stable.
      *
+     * @covers \mod_videotrackerpro\report\manager::mediahash
      * @return void Return value.
      */
     public function test_mediahash_is_stable(): void {
